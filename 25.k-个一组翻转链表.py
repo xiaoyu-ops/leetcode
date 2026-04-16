@@ -1,7 +1,7 @@
 #
-# @lc app=leetcode.cn id=24 lang=python3
+# @lc app=leetcode.cn id=25 lang=python3
 #
-# [24] 两两交换链表中的节点
+# [25] K 个一组翻转链表
 #
 
 # @lc code=start
@@ -11,24 +11,6 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # 定义好prev,cur,next_node就行
-        # dummy = ListNode(0,head)
-        # prev = dummy
-        # while prev and prev.next:
-        #     a = prev.next
-        #     b = prev.next.next
-        #     if not b:
-        #         return dummy.next
-        #     # 交换
-        #     prev.next = b
-        #     a.next = b.next
-        #     b.next = a
-        #     prev = a # 将 prev 移动到交换后第二个节点
-
-        # return dummy.next
-        return self.reverseKGroup(head,2)
-
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         cur,count = head,0
         while cur and count < k:
@@ -47,5 +29,6 @@ class Solution:
         # head就变成最后一个节点了 这个时候我们要接上后面的节点
         head.next = self.reverseKGroup(cur,k)
         return prev
+
 # @lc code=end
 

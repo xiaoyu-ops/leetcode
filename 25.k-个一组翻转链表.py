@@ -27,6 +27,7 @@ class Solution:
             prev,cur = cur,nxt
         
         # head就变成最后一个节点了 这个时候我们要接上后面的节点
+        # 这一行必须着重记
         head.next = self.reverseKGroup(cur,k)
         return prev
 

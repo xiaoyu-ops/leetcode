@@ -12,7 +12,8 @@
 #         self.next = next
 class Solution:
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # 先找中点
+        # 先找中点，就是一直分到两个点然后就再合 合的时候
+        # 就是两个有序的
         if not head or not head.next:
             return head
         
@@ -40,6 +41,7 @@ class Solution:
             cur = cur.next
         cur.next = l1 or l2# 取决于谁没走到最后
         return dummy.next
+
 
 # @lc code=end
 

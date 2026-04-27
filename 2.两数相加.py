@@ -14,21 +14,26 @@ class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         dummy = ListNode(0)
         cur = dummy
-        carry = 0
+        add = 0
 
-        while l1 or l2 or carry:
-            val = carry
+        # 逐位相加，处理进位；链表不等长时用 0 补齐
+        while l1 or l2 or add:
+            val = add
+            add = 0
             if l1:
                 val += l1.val
                 l1 = l1.next
             if l2:
                 val += l2.val
                 l2 = l2.next
-            carry = val//10
-            digit = val%10
-            cur.next = ListNode(digit)
+            if val >= 10:
+                add = 1
+                val = val%10
+            cur.next = ListNode(val)
             cur = cur.next
 
         return dummy.next
+        
+
 # @lc code=end
 

@@ -12,27 +12,28 @@
 #         self.next = next
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        if len(lists) == 0:
-            return None
-        if len(lists) < 2:
-            return lists[0] 
-        first = self._merge(lists[0],lists[1])
-        for i in range(2,len(lists)):
-            first = self._merge(first,lists[i])
-        return first
+        if not lists:
+            return 
+        elif len(lists) < 2:
+            return lists[0]
+
+        ans = lists[0] 
+        for i in range(1,len(lists)):
+            ans = self._merge(ans,lists[i])
+        return ans
     
-    def _merge(self,l1,l2):   
+    def _merge(self,l1,l2):
         dummy = ListNode(0)
         cur = dummy
         while l1 and l2:
-            if l1.val <= l2.val:
-               cur.next,l1 = l1,l1.next
+            if l1.val < l2.val:
+                cur.next,l1 = l1,l1.next
             else:
-               cur.next,l2 = l2,l2.next
+                cur.next,l2 = l2,l2.next
             cur = cur.next
-        cur.next = l1 or l2
+
+        cur.next = l1 if l1 else l2
         return dummy.next
-        
             
 # @lc code=end
 

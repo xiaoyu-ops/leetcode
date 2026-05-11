@@ -44,16 +44,18 @@ class Solution:
 
         # 2.动态规划（标准写法）
         # dp[i] 表示凑出金额 i 所需的最少硬币数
-        inf = amount + 1
-        dp = [inf] * (amount + 1)
+        import math
+        inf = math.inf
+        dp = [inf] * (amount+1)
         dp[0] = 0
-
-        for i in range(1, amount + 1):
-            for c in coins:
-                if i >= c:
-                    dp[i] = min(dp[i], dp[i - c] + 1)
-
-        return -1 if dp[amount] == inf else dp[amount]
-
+        coins.sort()
+        for i in range(amount+1):
+            for coin in coins:
+                if coin > i:
+                    break
+                dp[i] = min(dp[i],dp[i-coin] + 1)
+        if dp[amount] == inf:
+            return -1
+        return dp[amount]
 # @lc code=end
 

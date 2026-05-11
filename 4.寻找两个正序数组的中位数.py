@@ -11,6 +11,7 @@ class Solution:
         ans = []
         m,n = len(nums1),len(nums2)
         i,j = 0,0
+
         while i<m and j<n:
             if nums1[i] < nums2[j]:
                 ans.append(nums1[i])
@@ -24,6 +25,7 @@ class Solution:
         else:
             for x in range(i,len(nums1)):
                 ans.append(nums1[x])
+        
         if (len(ans)-1)%2==0:
             mid = (len(ans)-1)//2
             return ans[mid]
